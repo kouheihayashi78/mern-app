@@ -8,8 +8,24 @@ const postRoute = require('./routes/posts')
 // port指定
 const PORT = 3306;
 
+// mongoose読み込み
+const mongoose = require('mongoose');
+
+// dotenvのconfig関数を宣言し、envファイルを使えるようにする
+require('dotenv').config();
+
+// db接続（今回はmongodb）
+mongoose.connect(
+    // 「process.env.〇〇」でenvファイルに記述した内容を読み込める
+    process.env.MONGOURL
+).then(() => {
+    console.log('mongodbとの接続中です・・・');
+}).catch((err) => {
+    console.error(err);
+})
+
 // ミドルウェア
-// users.jsで設定したルートは下記をデフォルトルートとして使う
+// routeディレクトリ配下で作成したファイルの設定したルートは下記をデフォルトルートとして使う
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/posts', postRoute);
