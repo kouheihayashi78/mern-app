@@ -25,6 +25,7 @@ mongoose.connect(
 })
 
 // ミドルウェア
+app.use(express.json());
 // routeディレクトリ配下で作成したファイルの設定したルートは下記をデフォルトルートとして使う
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
