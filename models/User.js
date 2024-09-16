@@ -56,3 +56,6 @@ const UserSchema = new mongoose.Schema(
   // データの登録をした日付と時間を格納
   { timestamps: true }
 );
+
+// exportsでどのファイルからでもUserを読み込める
+module.exports = mongoose.model('User', UserSchema);
