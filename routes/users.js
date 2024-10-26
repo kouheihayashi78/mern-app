@@ -30,5 +30,21 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+// ユーザーの削除
+router.delete('/:id', async (req, res) => {
+    if(req.body.userId === req.params.id || req.body.isAdmin) {
+        try {
+            const user = await User.findByIdAndDelete(req.params.id);
+
+            res.status(200).json('ユーザー情報が削除されました。');
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+
+    } else {
+        return res.status(403).send('自分のアカウントの時に情報を削除できます。')
+    }
+})
+
 // jsにおいて、ファイルに存在する変数や関数を別のファイルで実行する（改めて言語化）
 module.exports = router;
