@@ -60,6 +60,45 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+// ユーザーのフォロー機能（自分と相手のユーザー情報必要）
+router.put('/follow/:id', async (req, res) => {
+    
+    if(req.body.userId !== req.params.id) {
+    try {
+        // フォロー対象のユーザー取得
+        const user = await User.findById(req.params.id);
+        const currentUser = await User. findById(req.body.userId);
+
+        // フォロー対象のフォロワーの中に自分のIDが含まれていない場合
+        // followersがユーザースキーマで配列として定義されているため、配列の中からincludesを使って探している
+        if(!user.followers.includes(req.body.userId)) {
+            // 相手のフォロワー数が増える
+            await user.updateOne({
+                // $pushは配列にプッシュしていくという意味
+                $push: {
+                    followers: req.body.userId
+                }
+            })
+            // 自分のフォロー数が増える
+            await currentUser.updateOne({
+                // $pushは配列にプッシュしていくという意味
+                $push: {
+                    followings: req.params.id
+                }
+            })
+
+            return res.status(200).json('フォローに成功しました。')
+        } else {
+            return res.status(403).json('すでにこのユーザーをフォローしています。')
+        }
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+    // idが一緒だとフォローできない(自分で自分をフォローしようとするイメージ)
+    } else {
+        return res.status(500).json('自分自身はフォローできません。')
+    }
+})
 
 // jsにおいて、ファイルに存在する変数や関数を別のファイルで実行する（改めて言語化）
 module.exports = router;
