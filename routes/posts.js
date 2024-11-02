@@ -18,4 +18,23 @@ router.post('/', async(req,res) => {
     }
 })
 
+// 投稿を更新する
+router.put('/:id', async (req, res) => {
+    try {
+        // urlのpostのidから投稿を探して取得する
+        const post = await Post.findById(req.params.id);
+        // 投稿があり、そのuserIdがbodyに含まれるuserId(つまり投稿者本人)の場合、編集できる
+        if (post.userId === req.body.userId) {
+            await post.updateOne({
+                $set: req.body
+            })
+            return res.status(200).json('投稿が編集されました。')
+        } else {
+            return res.status(403).json('投稿者本人しか編集できません。')
+        }
+    } catch (error) {
+        return res.status(403).json(error)
+    }
+})
+
 module.exports = router;
