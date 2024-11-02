@@ -52,4 +52,15 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+// 特定の投稿を取得する
+router.get('/:id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        const {updatedAt, ...other} = post._doc;
+        return res.status(200).json(other)
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+})
+
 module.exports = router;
