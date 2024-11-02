@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Post = require('../models/Post');
+const User = require('../models/User');
 
 router.get('/', (req, res) => {
     res.send('postRouter');
@@ -88,5 +89,30 @@ router.put('/like/:id', async (req, res) => {
         return res.status(500).json(error);
     }
 });
+
+// タイムラインの投稿を取得
+// またurlを下記のように命名したのは、特定の投稿を取得するapiが「/:id」としており、「timeline」だけだと「/:id」と認識されてしまうから
+router.get('/timeline/all', async (req, res) => {
+    try {
+        const currentUser = await User.findById(req.body.userId);
+        // 自分の投稿を全て取得
+        const userPosts = await Post.find({
+            userId: currentUser._id
+        })
+        // 自分がフォローしているユーザーの投稿を全て取得
+        // Promise.allを使う理由は、currentUserはawaitを使っており、いつ戻ってくるかわからないため、このように記述していつでも取得できるように待つ
+        const followingPosts = await Promise.all(
+            // followingsは配列のため、map関数を用いて一人一人取り出して、検索する
+            currentUser.followings.map((followId) => {
+                // 該当する投稿を全て取得する
+                return Post.find({userId: followId})
+            })
+        )
+        // concatで配列を組み合わせる、スプレッド構文で一つ一つ投稿を取り出す
+        return res.status(200).json(userPosts.concat(...followingPosts));
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+})
 
 module.exports = router;
