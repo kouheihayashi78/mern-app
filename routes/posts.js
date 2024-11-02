@@ -63,4 +63,30 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+// 特定の投稿にいいね!を押す
+router.put('/like/:id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        // 投稿にいいねが押されていなければ、いいねする
+        if(!post.likes.includes(req.body.userId)) {
+            await post.updateOne({
+                $push: { // $pushで配列に追加
+                    likes: req.body.userId
+                }
+            })
+            return res.status(200).json('投稿にいいねを押しました。')
+        // 投稿にいいねがすでに押されていたら、いいねを取り除く
+        } else {
+            await post.updateOne({
+                $pull: {
+                    likes: req.body.userId
+                }
+            })
+            return res.status(200).json('投稿のいいねを削除しました。')
+        }
+    } catch (error) {
+        return res.status(500).json(error);
+    }
+});
+
 module.exports = router;
