@@ -2,10 +2,6 @@ const router = require('express').Router();
 const Post = require('../models/Post');
 const User = require('../models/User');
 
-router.get('/', (req, res) => {
-    res.send('postRouter');
-});
-
 // 投稿を作成する
 router.post('/', async(req,res) => {
     // インスタンス化

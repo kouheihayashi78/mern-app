@@ -2,10 +2,6 @@
 const router = require('express').Router();
 const User = require('../models/User');
 
-router.get('/', (req, res) => {
-    res.send('userRouter');
-});
-
 // ユーザーの取得
 router.get('/:id', async (req, res) => {    
     try {

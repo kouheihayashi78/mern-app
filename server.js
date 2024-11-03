@@ -31,9 +31,4 @@ app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/posts', postRoute);
 
-// api作成
-app.get("/", (req, res) => {
-    res.send('hello world')
-})
-
 app.listen(PORT, () => console.log("listenでサーバー起動する"))
