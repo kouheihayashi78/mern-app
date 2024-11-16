@@ -1,4 +1,7 @@
 import React from "react";
+import Search from '@mui/icons-material/Search';
+import ChatIcon from '@mui/icons-material/Chat';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 export const Topbar = () => {
   return (
@@ -9,19 +12,20 @@ export const Topbar = () => {
         </span>
         <div className="topbar-center">
           <div className="search-bar">
+            <Search className="search-icon" />
             <input type="text" className="search-input" placeholder="調べたいことを入力してください" />
           </div>
         </div>
         <div className="topbar-right">
-          <div className="icon-area">
+          <div className="btn-area">
+            <ChatIcon />
+          </div>
+          <div className="btn-area">
+            <NotificationsIcon />
+          </div>
+        </div>
+        <div className="icon-area">
             <img src="assets/person/1.jpeg" alt="1" />
-          </div>
-          <div className="btn-area">
-            <img src="" alt="2" />
-          </div>
-          <div className="btn-area">
-            <img src="" alt="3" />
-          </div>
         </div>
       </div>
     </div>
