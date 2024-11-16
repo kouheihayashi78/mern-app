@@ -14,7 +14,7 @@ export const Topbar = () => {
         </div>
         <div className="topbar-right">
           <div className="icon-area">
-            <img src="" alt="1" />
+            <img src="assets/person/1.jpeg" alt="1" />
           </div>
           <div className="btn-area">
             <img src="" alt="2" />
