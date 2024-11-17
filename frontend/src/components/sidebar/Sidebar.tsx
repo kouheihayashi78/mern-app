@@ -1,5 +1,6 @@
 import React from "react";
 import { Bookmark, Home, MessageRounded, Notifications, Person, Search, Settings } from '@mui/icons-material';
+import './Sidebar.css';
 
 export const Sidebar = () => {
   return (
