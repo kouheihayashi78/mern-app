@@ -44,7 +44,7 @@
   width: 80%;
 }
 
-.searchInput:focus {
+.search-input:focus {
   outline: none;
 }
 
