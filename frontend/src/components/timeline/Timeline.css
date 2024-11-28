@@ -2,3 +2,7 @@
     flex: 6;
     height: 100vh;
 }
+
+.timelineWrapper {
+    padding: 20px;
+}
