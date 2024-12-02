@@ -2,7 +2,7 @@ import React from "react";
 import "./Post.css";
 import { MoreVert } from "@mui/icons-material";
 
-function Post() {
+function Post({ post }) {
   return (
     <div className="post">
       <div className="postWrapper">
@@ -10,26 +10,26 @@ function Post() {
           <div className="postTopLeft">
             <img src="./assets/person/1.jpeg" alt="" className="postProfileImg"/>
             <span className="postUsername">テスト 太郎</span>
-            <span className="postDate">10分前</span>
+            <span className="postDate">{post.date}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
           </div>
         </div>
         <div className="postCenter">
-          <span className="postText">SNSアプリ製作中です</span>
-          <img className="postImg" src="./assets/post/1.jpeg" alt="" />
+          <span className="postText">{post.desc}</span>
+          <img className="postImg" src={post.photo} alt="" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
             <img className="likeIcon" src="./assets/heart.png" alt=""
             />
             <span className="postLikeCounter">
-              1人がいいねを押しました
+            {post.like}人がいいねを押しました
             </span>
           </div>
           <div className="postBottomRight">
-            <span className="postCommentText">4:コメント</span>
+            <span className="postCommentText">{post.comment}:コメント</span>
           </div>
         </div>
       </div>

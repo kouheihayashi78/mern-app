@@ -44,7 +44,7 @@ export function Rightbar() {
           src="assets/promotion/promotion3.jpeg"
           alt=""
         />
-        <p className="promotionName">ShinCode株式会社</p>
+        <p className="promotionName">林株式会社</p>
       </>
     );
   };
@@ -66,7 +66,7 @@ export function Rightbar() {
                 alt=""
                 className="rightbarFollowingImg"
               />
-              <span className="rightbarFollowingName">ShinCode</span>
+              <span className="rightbarFollowingName">林</span>
             </div>
             <div className="rightbarFollowing">
               <img
