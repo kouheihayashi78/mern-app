@@ -25,19 +25,19 @@ function share() {
         <div className="shareButtons">
           <ul className="shareOptions">
             <li className="shareOption">
-              <Image className="shareIcon" />
+              <Image className="shareIcon" htmlColor="blue" />
               <span className="shareOptionText">写真</span>
             </li>
             <li className="shareOption">
-              <Gif className="shareIcon" />
+              <Gif className="shareIcon" htmlColor="green" />
               <span className="shareOptionText">GIF</span>
             </li>
             <li className="shareOption">
-              <Face className="shareIcon" />
+              <Face className="shareIcon" htmlColor="yellow" />
               <span className="shareOptionText">感情</span>
             </li>
             <li className="shareOption">
-              <Analytics className="shareIcon" />
+              <Analytics className="shareIcon" htmlColor="red" />
               <span className="shareOptionText">分析</span>
             </li>
           </ul>
