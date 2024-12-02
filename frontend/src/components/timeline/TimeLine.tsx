@@ -1,6 +1,7 @@
 import React from "react";
 import './TimeLine.css'
 import Share from '../share/Share.tsx';
+import Post from "../post/Post.tsx";
 
 export const TimeLine = () => {
   return (
@@ -8,7 +9,7 @@ export const TimeLine = () => {
       {/* shareコンポーネント */}
       <div className="timelineWrapper">
         <Share />
-        {/* <Post /> */}
+        <Post />
       </div>
     </div>
   );
