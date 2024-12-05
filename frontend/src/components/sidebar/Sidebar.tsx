@@ -1,6 +1,8 @@
 import React from "react";
 import { Bookmark, Home, MessageRounded, Notifications, Person, Search, Settings } from '@mui/icons-material';
 import './Sidebar.css';
+import { Users } from '../../dummyData';
+import Friend from "../Friend/Friend.tsx";
 
 export const Sidebar = () => {
   return (
@@ -38,18 +40,9 @@ export const Sidebar = () => {
         </ul>
         <hr className="sidebar-hr" />
         <ul className="sidebar-friend-list">
-          <li className="sidebar-friend">
-            <img src="/assets/person/2.jpeg" alt="友達2" className="sidebar-friend-img" />
-            <span className="sidebar-friend-name">友達2</span>
-          </li>
-          <li className="sidebar-friend">
-            <img src="/assets/person/3.jpeg" alt="友達3" className="sidebar-friend-img" />
-            <span className="sidebar-friend-name">友達3</span>
-          </li>
-          <li className="sidebar-friend">
-            <img src="/assets/person/4.jpeg" alt="友達4" className="sidebar-friend-img" />
-            <span className="sidebar-friend-name">友達4</span>
-          </li>
+          {Users.map((user) => (
+            <Friend user={user} key={user.id} />
+          ))}
         </ul>
       </div>
     </div>
