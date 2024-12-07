@@ -3,7 +3,7 @@ import "./Rightbar.css";
 import { Users } from "../../dummyData.js";
 import Online from "../Online/Online.tsx";
 
-export function Rightbar() {
+export function Rightbar({ profile }) {
   const HomeRightbar = () => {
     return (
       <>
@@ -103,9 +103,7 @@ export function Rightbar() {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {/* todo: 今後userタイプによって下記の表示を切り替える */}
-        {<ProfileRightbar />}
-        {<HomeRightbar />}
+        {profile ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );
