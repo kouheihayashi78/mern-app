@@ -6,6 +6,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import "../topbar/Topbar.css";
 
 export const Topbar = () => {
+  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="topbar-container">
       <div className="topbar-left">
@@ -34,7 +35,7 @@ export const Topbar = () => {
             <span className="topbar-icon-badge">3</span>
           </div>
           <Link to="/profile/" style={{ textDecoration: "none" }}>
-            <img src="assets/person/1.jpeg" alt="1" className="topbar-img" />
+            <img src={PUBLIC_FOLDER + 'person/1.jpeg'} alt="1" className="topbar-img" />
           </Link>
         </div>
       </div>

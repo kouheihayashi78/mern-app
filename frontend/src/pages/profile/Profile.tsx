@@ -6,6 +6,7 @@ import { TimeLine } from "../../components/timeline/TimeLine.tsx";
 import { Rightbar } from "../../components/rightbar/Rightbar.tsx";
 
 export default function Profile() {
+  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <>
       <Topbar />
@@ -15,12 +16,12 @@ export default function Profile() {
           <div className="profileRightTop">
             <div className="profileCover">
               <img
-                src="assets/post/3.jpeg" //デフォルト画像は決めてない。
+                src={PUBLIC_FOLDER+'post/3.jpeg'} //デフォルト画像は決めてない。
                 alt=""
                 className="profileCoverImg"
               />
               <img
-                src="assets/person/1.jpeg"
+                src={PUBLIC_FOLDER+'person/1.jpeg'}
                 alt=""
                 className="profileUserImg"
               />
