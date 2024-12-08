@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import { Bookmark, Home, MessageRounded, Notifications, Person, Search, Settings } from '@mui/icons-material';
 import './Sidebar.css';
 import { Users } from '../../dummyData';
@@ -11,7 +12,9 @@ export const Sidebar = () => {
         <ul className="sidebar-list">
           <li className="sidebar-list-item">
             <Home className="sidebar-icon" />
-            <span className="sidebar-list-item-text">ホーム</span>
+            <Link to="/" style={{textDecoration: "none", color: "black"}}>
+              <span className="sidebar-list-item-text">ホーム</span>
+            </Link>
           </li>
           <li className="sidebar-list-item">
             <Search className="sidebar-icon" />
@@ -31,7 +34,9 @@ export const Sidebar = () => {
           </li>
           <li className="sidebar-list-item">
             <Person className="sidebar-icon" />
-            <span className="sidebar-list-item-text">プロフィール</span>
+            <Link to="/profile/" style={{textDecoration: "none", color: "black"}}>
+              <span className="sidebar-list-item-text">プロフィール</span>
+            </Link>
           </li>
           <li className="sidebar-list-item">
             <Settings className="sidebar-icon" />

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import Search from "@mui/icons-material/Search";
 import ChatIcon from "@mui/icons-material/Chat";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -8,7 +9,9 @@ export const Topbar = () => {
   return (
     <div className="topbar-container">
       <div className="topbar-left">
-        <span className="logo">mern-app</span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">mern-app</span>
+        </Link>
       </div>
       <div className="topbar-center">
         <div className="search-bar">
@@ -30,7 +33,9 @@ export const Topbar = () => {
             <NotificationsIcon />
             <span className="topbar-icon-badge">3</span>
           </div>
-          <img src="assets/person/1.jpeg" alt="1" className="topbar-img" />
+          <Link to="/profile/" style={{ textDecoration: "none" }}>
+            <img src="assets/person/1.jpeg" alt="1" className="topbar-img" />
+          </Link>
         </div>
       </div>
     </div>
