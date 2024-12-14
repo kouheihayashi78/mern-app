@@ -10,7 +10,7 @@ router.get('/:id', async (req, res) => {
         // スプレッド構文で上記二つ以外のものを格納してそれらをjson形式で渡す
         // _docはMongooseでRaw値を格納するプロパティ
         const { password, updatedAt, ...other } = user._doc;
-        res.status(200).json(other);
+        return res.status(200).json(other);
     } catch (error) {
         return res.status(500).json(error)
     }
@@ -31,7 +31,7 @@ router.put('/:id', async (req, res) => {
                 $set: req.body,
             });
 
-            res.status(200).json('ユーザー情報が更新されました。');
+            return res.status(200).json('ユーザー情報が更新されました。');
         } catch (error) {
             return res.status(500).json(error)
         }
@@ -46,7 +46,7 @@ router.delete('/:id', async (req, res) => {
     if(req.body.userId === req.params.id || req.body.isAdmin) {
         try {
             const user = await User.findByIdAndDelete(req.params.id);
-            res.status(200).json('ユーザー情報が削除されました。');
+            return res.status(200).json('ユーザー情報が削除されました。');
         } catch (error) {
             return res.status(500).json(error)
         }

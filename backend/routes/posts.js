@@ -88,9 +88,12 @@ router.put('/like/:id', async (req, res) => {
 
 // タイムラインの投稿を取得
 // またurlを下記のように命名したのは、特定の投稿を取得するapiが「/:id」としており、「timeline」だけだと「/:id」と認識されてしまうから
-router.get('/timeline/all', async (req, res) => {
+router.get('/timeline/:userId', async (req, res) => {
     try {
-        const currentUser = await User.findById(req.body.userId);
+        const currentUser = await User.findById(req.params.userId);
+        if (!currentUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
         // 自分の投稿を全て取得
         const userPosts = await Post.find({
             userId: currentUser._id
@@ -99,9 +102,9 @@ router.get('/timeline/all', async (req, res) => {
         // Promise.allを使う理由は、currentUserはawaitを使っており、いつ戻ってくるかわからないため、このように記述していつでも取得できるように待つ
         const followingPosts = await Promise.all(
             // followingsは配列のため、map関数を用いて一人一人取り出して、検索する
-            currentUser.followings.map((followId) => {
+            (currentUser.followings || []).map((followId) => {
                 // 該当する投稿を全て取得する
-                return Post.find({userId: followId})
+                return Post.find({ userId: followId });
             })
         )
         // concatで配列を組み合わせる、スプレッド構文で一つ一つ投稿を取り出す
