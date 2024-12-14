@@ -10,7 +10,7 @@ const PORT = 3306;
 
 // mongoose読み込み
 const mongoose = require('mongoose');
-
+mongoose.set('strictQuery', true);
 // dotenvのconfig関数を宣言し、envファイルを使えるようにする
 require('dotenv').config();
 
